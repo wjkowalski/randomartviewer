@@ -1,0 +1,36 @@
+
+body{
+    max-height: 100vw;
+    box-sizing: border-box;
+}
+img {
+    max-height: 90vh;
+    text-align: center;
+}
+#imageHolder {
+    width: 70%;
+    margin: 0 auto;
+}
+
+#imageWrapper {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#imageInfo {
+    width: 30%;
+    text-align: left;
+}
+
+#description{
+text-align: left;
+}
+
+#artWrapper {
+    display: flex;
+}
+
+#next-image-button-holder {
+    width: fit-content;
+    margin: 0 auto;
+}
