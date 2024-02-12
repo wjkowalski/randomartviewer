@@ -23,6 +23,7 @@ img {
 }
 
 #description{
+margin-left: 1rem;
 text-align: left;
 }
 
@@ -32,5 +33,5 @@ text-align: left;
 
 #next-image-button-holder {
     width: fit-content;
-    margin: 0 auto;
+    margin: 2rem auto;
 }
