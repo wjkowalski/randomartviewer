@@ -44,12 +44,6 @@ async function showRandomImage() {
         let isPublic = thisImage.is_public_domain;
         let country = thisImage.place_of_origin;
         let full_image_link;
-
-
-        if(isPublic === true){ // if in public domain, it will have a large zoomable version of the image available
-            full_image_link = 'https://www.artic.edu/iiif/2/' + thisImage.image_id + "/full/1686,/0/default.jpg";
-            document.getElementById('fullImageLink').innerHTML = `<a href="${full_image_link}" target="_blank"> CLICK HERE FOR FULL SIZE PUBLIC DOMAIN IMAGE</a>`;
-        }
     
         document.getElementById('title').innerHTML = "<em>" + title + "</em>"; // name of piece
 
@@ -65,9 +59,14 @@ async function showRandomImage() {
             showRandomImage();
         }
 
-        document.getElementById('intro').innerHTML = `<p style="text-align: center">Welcome to the Random Art Slideshow <br />Version 0.1 <br />This website is best viewed on larger screens.<br />Current image: ${collectionID}<br /> Current collection page ${pageNum} <br /><br />To see a new image, refresh the page or click the button below.`;
+        document.getElementById('intro').innerHTML = `<p style="text-align: center">Welcome to the Random Art Slideshow <br />Version 0.1 <br />Built by Bill Kowalski of <a href="https://mahonebaywebdesign.com">Mahone Bay Web Design</a>.<br />This website is best viewed on larger screens.<br /><br />Current image: ${collectionID}<br /> Current collection page ${pageNum} <br /><br />To see a new image, refresh the page or click the button below.`;
        
         document.getElementById('description').innerHTML = `<p class="desc-text"><strong>DATE: </strong>${date}<br /><p class="desc-text"><strong>COUNTRY: </strong>${country}<br /><p class="desc-text"><strong>TYPE: </strong>${type}<br /><p class="desc-text"><strong>MEDIUM: </strong>${medium}<br><p class="desc-text"><strong>CREDIT: </strong>${credit}<br /><p class="desc-text"><a href="${image}" target="_blank">CLICK HERE FOR ORIGINAL IMAGE FILE</a>`;
+
+        if(isPublic === true){ // if in public domain, it will have a large zoomable version of the image available
+            full_image_link = 'https://www.artic.edu/iiif/2/' + thisImage.image_id + "/full/1686,/0/default.jpg";
+            document.getElementById('fullImageLink').innerHTML = `<a href="${full_image_link}" target="_blank"> CLICK HERE FOR FULL SIZE PUBLIC DOMAIN IMAGE</a>`;
+        }
 
         if(description !== null){ // check if there is a description
             document.getElementById('advDesc').innerHTML = description;
