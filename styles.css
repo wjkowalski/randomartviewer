@@ -22,9 +22,31 @@ img {
     text-align: left;
 }
 
-#description{
+#thinking {
+    position: absolute;
+    top: 0;
+    height: 90vh;
+    width: 90vh;
+    background-color: white;
+    display: none;
+}
+
+#text-holder {
+    font-size: 4rem;
+    width: fit-content;
+    margin: 0 auto;
+    
+}
+
+
+#description, #advDesc {
 margin-left: 1rem;
+margin-top: 1rem;
 text-align: left;
+}
+
+#fullImageLink {
+    margin-top: 1rem;
 }
 
 #artWrapper {
