@@ -66,6 +66,8 @@ async function showRandomImage() {
         if(isPublic === true){ // if in public domain, it will have a large zoomable version of the image available
             full_image_link = 'https://www.artic.edu/iiif/2/' + thisImage.image_id + "/full/1686,/0/default.jpg";
             document.getElementById('fullImageLink').innerHTML = `<a href="${full_image_link}" target="_blank"> CLICK HERE FOR FULL SIZE PUBLIC DOMAIN IMAGE</a>`;
+        } else {
+            document.getElementById('fullImageLink').innerHTML = "Not in the public domain.";
         }
 
         if(description !== null){ // check if there is a description
