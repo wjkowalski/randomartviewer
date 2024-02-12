@@ -6,7 +6,7 @@ async function showRandomImage() {
     document.getElementById('thinking').style.display = "block";
 
 
-    let pageNum = Math.floor(Math.random() * 10000);
+    let pageNum = Math.floor(Math.random() * 10333);
     let imageNum = Math.floor(Math.random() * 11);
     let imageStem = 'https://www.artic.edu/iiif/2/';
     let imageEnd = '/full/843,/0/default.jpg'; // build image URLs with these stems (Image ID goes in the middle)
@@ -59,9 +59,9 @@ async function showRandomImage() {
             showRandomImage();
         }
 
-        document.getElementById('intro').innerHTML = `<p style="text-align: center">Welcome to the Random Art Slideshow <br />Version 0.1 <br />Built by Bill Kowalski of <a href="https://mahonebaywebdesign.com">Mahone Bay Web Design</a>.<br />This website is best viewed on larger screens.<br /><br />Current image: ${collectionID}<br /> Current collection page ${pageNum} <br /><br />To see a new image, refresh the page or click the button below.`;
+        document.getElementById('intro').innerHTML = `<p class="desc-text">Welcome to the Random Art Slideshow v0.1 <br />Data courtesy of the <a href="https://api.artic.edu/docs/#introduction">Chicago Art Institute</a>.<br />Built by Bill Kowalski of <a href="https://mahonebaywebdesign.com">Mahone Bay Web Design</a>.<br />This website is best viewed on larger screens.<br /><br />Current image: ${collectionID}<br /> Current collection page ${pageNum} <br /><br />To see a new image, refresh the page or click the button below.<br />CAUTION: Some images may be inappropriate for minors.`;
        
-        document.getElementById('description').innerHTML = `<p class="desc-text"><strong>DATE: </strong>${date}<br /><p class="desc-text"><strong>COUNTRY: </strong>${country}<br /><p class="desc-text"><strong>TYPE: </strong>${type}<br /><p class="desc-text"><strong>MEDIUM: </strong>${medium}<br><p class="desc-text"><strong>CREDIT: </strong>${credit}<br /><p class="desc-text"><a href="${image}" target="_blank">CLICK HERE FOR ORIGINAL IMAGE FILE</a>`;
+        document.getElementById('description').innerHTML = `<p class="desc-text"><strong>TITLE: </strong>${title}<br /><p class="desc-text"><strong>ARTIST: </strong>${artist}<br /><p class="desc-text"><strong>DATE: </strong>${date}<br /><p class="desc-text"><strong>COUNTRY: </strong>${country}<br /><p class="desc-text"><strong>TYPE: </strong>${type}<br /><p class="desc-text"><strong>MEDIUM: </strong>${medium}<br><p class="desc-text"><strong>CREDIT: </strong>${credit}<br /><p class="desc-text"><a href="${image}" target="_blank">CLICK HERE FOR ORIGINAL IMAGE FILE</a>`;
 
         if(isPublic === true){ // if in public domain, it will have a large zoomable version of the image available
             full_image_link = 'https://www.artic.edu/iiif/2/' + thisImage.image_id + "/full/1686,/0/default.jpg";
