@@ -1,3 +1,6 @@
+:root {
+    font-family: Helvetica, 'Open Sans';
+}
 
 body{
     max-height: 100vw;
@@ -6,6 +9,12 @@ body{
 img {
     max-height: 90vh;
     text-align: center;
+}
+
+button {
+    height: 3rem;
+    padding: 0 1rem;
+    box-shadow: 3px 3px 15px #aaa;
 }
 #imageHolder {
     width: 70%;
@@ -25,16 +34,16 @@ img {
 #thinking {
     position: absolute;
     top: 0;
-    height: 90vh;
-    width: 90vh;
+    height: 100%;
+    width: 100%;
     background-color: white;
-    display: none;
+    display: block;
 }
 
 #text-holder {
     font-size: 4rem;
     width: fit-content;
-    margin: 0 auto;
+    margin: 45vh auto;
     
 }
 
@@ -46,7 +55,7 @@ text-align: left;
 }
 
 #fullImageLink {
-    margin-top: 1rem;
+    margin-left: 1rem;
 }
 
 #artWrapper {

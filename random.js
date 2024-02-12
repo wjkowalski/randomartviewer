@@ -69,9 +69,9 @@ async function showRandomImage() {
             showRandomImage();
         }
 
-        document.getElementById('intro').innerHTML = `<p style="text-align: center">Welcome to the Random Art Slideshow <br />Version 0.1 <br />This website is best viewed on larger screens.<br />Currently viewing image ${collectionID} from page ${pageNum}. <br />To see a new image, refresh the page or click the button below.`;
+        document.getElementById('intro').innerHTML = `<p style="text-align: center">Welcome to the Random Art Slideshow <br />Version 0.1 <br />This website is best viewed on larger screens.<br />Current image: ${collectionID}<br /> Current collection page ${pageNum} <br /><br />To see a new image, refresh the page or click the button below.`;
        
-        document.getElementById('description').innerHTML = `<strong>DATE: </strong>${date}<br /><strong>COUNTRY: </strong>${country}<br /><strong>TYPE: </strong>${type}<br /><strong>MEDIUM: </strong>${medium}<br><strong>CREDIT: </strong>${credit}<br /><a href="${image}" target="_blank">CLICK HERE FOR ORIGINAL IMAGE FILE</a>`;
+        document.getElementById('description').innerHTML = `<p class="desc-text"><strong>DATE: </strong>${date}<br /><p class="desc-text"><strong>COUNTRY: </strong>${country}<br /><p class="desc-text"><strong>TYPE: </strong>${type}<br /><p class="desc-text"><strong>MEDIUM: </strong>${medium}<br><p class="desc-text"><strong>CREDIT: </strong>${credit}<br /><p class="desc-text"><a href="${image}" target="_blank">CLICK HERE FOR ORIGINAL IMAGE FILE</a>`;
 
         if(description !== null){ // check if there is a description
             document.getElementById('advDesc').innerHTML = description;
