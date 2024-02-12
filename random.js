@@ -45,7 +45,6 @@ async function showRandomImage() {
         let country = thisImage.place_of_origin;
         let full_image_link;
 
-        document.getElementById('thinking').style.display = "none";
 
         if(isPublic === true){ // if in public domain, it will have a large zoomable version of the image available
             full_image_link = 'https://www.artic.edu/iiif/2/' + thisImage.image_id + "/full/1686,/0/default.jpg";
@@ -76,11 +75,14 @@ async function showRandomImage() {
             document.getElementById('advDesc').innerHTML = "<strong>Item Description:</strong> <br /> No further description available";
         }        
 
-        }
+
+
+        } document.getElementById('thinking').style.display = "none";
 
         
 
-    }
+
+    } 
     catch (error) {
         console.error('Error fetching data:', error);
         throw error; // Re-throw the error to propagate it to the next catch block if needed
