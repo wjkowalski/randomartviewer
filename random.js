@@ -38,7 +38,7 @@ async function showRandomImage() {
         let country = thisImage.place_of_origin;
         let full_image_link;
 
-        if(isPublic === true){
+        if(isPublic === true){ // if in public domain, it will have a large zoomable version of the image available
             full_image_link = 'https://www.artic.edu/iiif/2/' + thisImage.image_id + "/full/1686,/0/default.jpg";
             document.getElementById('fullImageLink').innerHTML = `<a href="${full_image_link}" target="_blank"> CLICK HERE FOR FULL SIZE PUBLIC DOMAIN IMAGE</a>`;
         }
@@ -50,21 +50,21 @@ async function showRandomImage() {
         } 
 
     
-        document.getElementById('title').innerHTML = "<em>" + title + "</em>";
+        document.getElementById('title').innerHTML = "<em>" + title + "</em>"; // name of piece
 
-        if(artist){
+        if(artist){ // check to see if artist name is available
             document.getElementById('artistName').innerHTML = artist;
         } else {
             document.getElementById('artistName').innerHTML = ("No artist available.");
         }
 
-        if(thisImage.image_id !== null){
+        if(thisImage.image_id !== null){ // attempt to prevent pages with bad images from being shown
             document.getElementById('artworkImage').src = image;
         } else {
             showRandomImage();
         }
 
-        document.getElementById('intro').innerHTML = `<p style="text-align: center">Welcome to the Chicago Institute of Art Random Slideshow version 0.1. <br />This is image ${collectionID} from page ${pageNum}. <br />To see a new image, refresh the page or click the button below.`;
+        document.getElementById('intro').innerHTML = `<p style="text-align: center">Welcome to the Random Art Slideshow <br />Version 0.1 <br />This website is best viewed on larger screens.<br />Currently viewing image ${collectionID} from page ${pageNum}. <br />To see a new image, refresh the page or click the button below.`;
        
         document.getElementById('description').innerHTML = `<strong>DATE: </strong>${date}<br /><strong>COUNTRY: </strong>${country}<br /><strong>TYPE: </strong>${type}<br /><strong>MEDIUM: </strong>${medium}<br><strong>CREDIT: </strong>${credit}<br /><a href="${image}" target="_blank">CLICK HERE FOR ORIGINAL IMAGE FILE</a>`;
 
