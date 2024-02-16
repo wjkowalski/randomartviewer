@@ -17,14 +17,15 @@ async function showRandomImage() {
     try {
         const response = await fetch(url);
 
-        
+        document.getElementById('thinking').style.display = "block";
+        document.getElementById('artworkImage').style.display = "none";
 
         if (!response.ok) {
             console.log("Quitting...")
             throw new Error('Network response was bad');
         } else {
 
-            const json = await response.json();  // convert json into js
+        const json = await response.json();  // convert json into js
         pageInfo = json.data; // update global pageInfo variable with new data
 
         console.log(pageInfo[imageNum]);
@@ -53,13 +54,18 @@ async function showRandomImage() {
             document.getElementById('artistName').innerHTML = ("No artist available.");
         }
 
-        if(thisImage.image_id !== null){ // attempt to prevent pages with bad images from being shown
+
+        if(thisImage.image_id !== null){ 
             document.getElementById('artworkImage').src = image;
+            document.getElementById('thinking').style.display = "none";
+            document.getElementById('artworkImage').style.display = "block";
+
+            
         } else {
             showRandomImage();
         }
 
-        document.getElementById('intro').innerHTML = `<p class="desc-text">Welcome to the Random Art Slideshow v0.1 <br />Data courtesy of the <a href="https://api.artic.edu/docs/#introduction">Chicago Art Institute</a>.<br />Built by Bill Kowalski of <a href="https://mahonebaywebdesign.com">Mahone Bay Web Design</a>.<br />This website is best viewed on larger screens.<br /><br />Current image: ${collectionID}<br /> Current collection page ${pageNum} <br /><br />To see a new image, refresh the page or click the button below.<br />CAUTION: Some images may be inappropriate for minors.`;
+        document.getElementById('intro').innerHTML = `<p class="desc-text">Welcome to the Random Art Slideshow v0.1 <br />Data courtesy of the <a href="https://api.artic.edu/docs/#introduction">Chicago Art Institute</a>.<br />Built by Bill Kowalski of <a href="https://mahonebaywebdesign.com">Mahone Bay Web Design</a>.<br />This website is best viewed on larger screens.<br /><br />Current image: ${collectionID}<br /> Current collection page ${pageNum} <br /><br />To see a new image, refresh the page or click the button below.<br /><p style="margin-top: 1rem; text-align: center; font-weight: bold;">CAUTION: Some images may be unsafe for work (NSFW) or inappropriate for minors.</p>`;
        
         document.getElementById('description').innerHTML = `<p class="desc-text"><strong>TITLE: </strong>${title}<br /><p class="desc-text"><strong>ARTIST: </strong>${artist}<br /><p class="desc-text"><strong>DATE: </strong>${date}<br /><p class="desc-text"><strong>COUNTRY: </strong>${country}<br /><p class="desc-text"><strong>TYPE: </strong>${type}<br /><p class="desc-text"><strong>MEDIUM: </strong>${medium}<br><p class="desc-text"><strong>CREDIT: </strong>${credit}<br /><p class="desc-text"><a href="${image}" target="_blank">CLICK HERE FOR ORIGINAL IMAGE FILE</a>`;
 
@@ -76,7 +82,7 @@ async function showRandomImage() {
             document.getElementById('advDesc').innerHTML = "<strong>Item Description:</strong> <br /> No further description available";
         }        
 
-        } document.getElementById('thinking').style.display = "none";
+        } 
 
     } 
     catch (error) {
