@@ -76,12 +76,7 @@ async function showRandomImage() {
             document.getElementById('advDesc').innerHTML = "<strong>Item Description:</strong> <br /> No further description available";
         }        
 
-
-
         } document.getElementById('thinking').style.display = "none";
-
-        
-
 
     } 
     catch (error) {
