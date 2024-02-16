@@ -1,5 +1,5 @@
 // Show a random piece from a random page
-async function showRandomImage() {
+async function showRandomImage(tries = 10) {
 
     console.log("Thinking...")
 
@@ -27,6 +27,13 @@ async function showRandomImage() {
     console.log(pageInfo[imageNum]);
 
     let thisImage = pageInfo[imageNum];
+    if(thisImage.image_id == null) {
+        if (tries == 0) {
+            throw new Error('image load retry exceeded');
+        }
+        return showRandomImage(tries-1); // go fish
+    }
+
     let title = thisImage.title;
     let artist = thisImage.artist_title;
     let artist_display = thisImage.artist_display.replace("/n", "<br />");
