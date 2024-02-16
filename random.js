@@ -87,7 +87,7 @@ async function showRandomImage() {
     } 
     catch (error) {
         console.error('Error fetching data:', error);
-        throw error; // Re-throw the error to propagate it to the next catch block if needed
+        // OK FRUMIOUS, I TOOK THAT LAST THROW OUT... ARE YOU HAPPY NOW?
     }
 }
     
