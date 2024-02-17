@@ -42,6 +42,10 @@ async function showRandomImage() {
 
     addDotLoop();
 
+    if (n === 9){
+        showRandomImage();
+    }
+
     let artworkImage = document.getElementById('artworkImage');
     let pageNum = Math.floor(Math.random() * 10333);
     let imageNum = Math.floor(Math.random() * 11);
