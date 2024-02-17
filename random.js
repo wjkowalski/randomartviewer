@@ -1,16 +1,48 @@
+function refreshPage(){
+    window.location.reload();
+}
+
+let nextButton = document.getElementById('next-image-button');
+let clicked = nextButton.addEventListener('click', refreshPage);
+
+
 // Show a random piece from a random page
-async function showRandomImage(tries = 10) {
+async function showRandomImage() {
 
-    console.log("Thinking...")
-
+    let thinkHolder = document.getElementById('thinking-holder');
     let thinking = document.getElementById('thinking');
+
+    // clear the page temporarily
+    document.getElementById('artWrapper').style.display = "none";
+    console.log("Cleared the page.");
+
+    // reset the thinking text
+    thinking.innerHTML = "Finding an image";
+    console.log("Text reset.");
+  
+    // add dots while thinking
+    function addDots() {
+        const dot = document.createTextNode(".");
+        thinking.appendChild(dot);
+    }
+
+    let n = 0;
+
+    function addDotLoop() {
+        setTimeout(() => {
+            addDots();
+            console.log("Added dot #" + n);
+            n++;
+            if (n < 10) {
+                addDotLoop();
+            }
+        }, 1000);
+
+        }
+
+    addDotLoop();
+
     let artworkImage = document.getElementById('artworkImage');
-
-    // toggle splash screen on / image off.
-    thinking.style.display = "block";
-    artworkImage.style.display = "none";
-    artworkImage.src = null;
-
     let pageNum = Math.floor(Math.random() * 10333);
     let imageNum = Math.floor(Math.random() * 11);
     let imageStem = 'https://www.artic.edu/iiif/2/';
@@ -19,26 +51,23 @@ async function showRandomImage(tries = 10) {
 
     let url = pageStem + pageNum;
 
-    const response = await fetch(url); // throws
+    const response = await fetch(url); // fetch creates and returns a promise which is handled in the next line 
 
     const json = await response.json();  // convert json into js
     pageInfo = json.data; // update global pageInfo variable with new data
 
-    console.log(pageInfo[imageNum]);
+    console.log(pageInfo[imageNum]); 
 
     let thisImage = pageInfo[imageNum];
     if(thisImage.image_id == null) {
-        if (tries == 0) {
-            throw new Error('image load retry exceeded');
-        }
-        return showRandomImage(tries-1); // go fish
+
+        showRandomImage(); // run the function again if there is no image id 
     }
 
     let title = thisImage.title;
     let artist = thisImage.artist_title;
     let artist_display = thisImage.artist_display.replace("/n", "<br />");
     let image_url = imageStem + thisImage.image_id + imageEnd;
-    
     let date = thisImage.date_display;
     let medium = thisImage.medium_display;
     let collectionID = thisImage.id;
@@ -57,13 +86,15 @@ async function showRandomImage(tries = 10) {
         document.getElementById('artistName').innerHTML = ("No artist available.");
     }
 
-    // Toggle to from splash to page once image is loaded.
+    // Toggle from splash to page once image is loaded.
     let img = new Image();
     img.onload = function() {
         artworkImage.src = img.src;
         thinking.style.display = "none";
-        artworkImage.style.display = "block";
+        thinkHolder.style.display = "none";
+        document.getElementById('artWrapper').style.display = "flex";
     };
+
     img.src = image_url;
 
     document.getElementById('intro').innerHTML = `<p class="desc-text">Welcome to the Random Art Slideshow v0.1 <br />Data courtesy of the <a href="https://api.artic.edu/docs/#introduction">Chicago Art Institute</a>.<br />Built by Bill Kowalski of <a href="https://mahonebaywebdesign.com">Mahone Bay Web Design</a>.<br />This website is best viewed on larger screens.<br /><br />Current image: ${collectionID}<br /> Current collection page ${pageNum} <br /><br />To see a new image, refresh the page or click the button below.<br /><p style="margin-top: 1rem; text-align: center; font-weight: bold;">CAUTION: Some images may be unsafe for work (NSFW) or inappropriate for minors.</p>`;
